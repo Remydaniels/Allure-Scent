@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+    <title>Checkout — ALLURE</title>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top" aria-label="Main navigation">
+    <div class="container-fluid">
+      <a href="index.html"><img src="./images/logo-transparent-png.png" alt="ALLURE" height="40"></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar2" aria-controls="offcanvasNavbar2" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar2" aria-labelledby="offcanvasNavbar2Label">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasNavbar2Label">ALLURE</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+            <li class="nav-item"><a class="nav-link" href="shop.html">Shop All</a></li>
+          </ul>
+          <form class="d-flex search-form" role="search" action="shop.html" method="get">
+            <input class="form-control form-control-sm" type="search" name="q" placeholder="Search perfumes…" aria-label="Search">
+            <button class="btn btn-sm btn-outline-dark" type="submit">Search</button>
+          </form>
+          <button class="cart-icon" type="button" data-cart-toggle aria-label="Open cart">
+            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 20">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 15a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm0 0h8m-8 0-1-4m9 4a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm-9-4h10l2-7H3m2 7L3 4m0 0-.792-3H1"/>
+            </svg>
+            <span data-cart-count>0</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container checkout-page">
+    <h1>Checkout</h1>
+    <div id="checkoutBody" class="checkout-grid">
+      <!-- order summary -->
+      <section class="checkout-summary">
+        <h2>Order summary</h2>
+        <div data-summary-items></div>
+        <div class="summary-line"><span>Subtotal</span><span data-summary-subtotal>₦0</span></div>
+        <div class="summary-line"><span>Shipping</span><span data-summary-shipping>—</span></div>
+        <div class="summary-line summary-total"><span>Total</span><span data-summary-total>₦0</span></div>
+      </section>
+
+      <!-- shipping / contact form -->
+      <section class="checkout-form">
+        <h2>Shipping details</h2>
+        <form id="checkoutForm" novalidate>
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label" for="fullName">Full name</label>
+              <input class="form-control" id="fullName" name="fullName" required>
+              <div class="invalid-feedback">Please enter your name.</div>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label" for="email">Email</label>
+              <input class="form-control" id="email" name="email" type="email" required>
+              <div class="invalid-feedback">Please enter a valid email.</div>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label" for="phone">Phone</label>
+              <input class="form-control" id="phone" name="phone" type="tel" required>
+              <div class="invalid-feedback">Please enter your phone number.</div>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label" for="city">City</label>
+              <input class="form-control" id="city" name="city" required>
+              <div class="invalid-feedback">Please enter your city.</div>
+            </div>
+            <div class="col-12">
+              <label class="form-label" for="address">Delivery address</label>
+              <textarea class="form-control" id="address" name="address" rows="3" required></textarea>
+              <div class="invalid-feedback">Please enter your delivery address.</div>
+            </div>
+            <div class="col-12">
+              <label class="form-label" for="notes">Order notes (optional)</label>
+              <textarea class="form-control" id="notes" name="notes" rows="2"></textarea>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-dark btn-lg mt-4 w-100" id="placeOrder">Place order</button>
+        </form>
+      </section>
+    </div>
+
+    <!-- empty state -->
+    <div id="emptyState" class="checkout-empty" hidden>
+      <h2>Your cart is empty</h2>
+      <p>Add a few fragrances before checking out.</p>
+      <a class="btn btn-dark" href="shop.html">Browse the shop</a>
+    </div>
+
+    <!-- confirmation -->
+    <div id="confirmation" class="checkout-confirm" hidden>
+      <div class="confirm-check">✓</div>
+      <h2>Thank you for your order!</h2>
+      <p>A confirmation has been sent to <strong data-confirm-email></strong>.</p>
+      <p class="confirm-order">Order reference: <strong data-confirm-ref></strong></p>
+      <a class="btn btn-dark" href="shop.html">Continue shopping</a>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-6">
+          <h5>ALLURE</h5>
+          <p>100% authentic luxury fragrances, delivered with care.</p>
+        </div>
+        <div class="col-sm-3">
+          <h5>Customer Service</h5>
+          <ul class="list-unstyled">
+            <li><a href="#" class="nav-link p-0 text-body-primary">Contact Us</a></li>
+            <li><a href="#" class="nav-link p-0 text-body-primary">Returns</a></li>
+          </ul>
+        </div>
+        <div class="col-sm-3">
+          <h5>Shop</h5>
+          <ul class="list-unstyled">
+            <li><a href="shop.html" class="nav-link p-0 text-body-primary">All products</a></li>
+          </ul>
+        </div>
+      </div>
+      <hr>
+      <p><a href="#" class="nav-link p-0 text-body-primary">Allure Fragrance © 2023</a></p>
+    </div>
+  </footer>
+
+  <div class="cart-overlay" data-cart-overlay></div>
+  <aside class="cartTab" aria-label="Shopping cart">
+    <h1>Shopping Cart</h1>
+    <div class="listCart" data-cart-list></div>
+    <div class="cartFoot">
+      <div class="cart-total-row"><span>Total</span><span data-cart-total>₦0</span></div>
+      <div class="btn">
+        <button class="close" data-cart-close>Close</button>
+        <button class="checkOut" data-checkout>Checkout</button>
+      </div>
+    </div>
+  </aside>
+
+  <script src="./products.js"></script>
+  <script src="./api.js"></script>
+  <script src="./store.js"></script>
+  <script src="./cards.js"></script>
+  <script src="./checkout.js"></script>
+</body>
+</html>

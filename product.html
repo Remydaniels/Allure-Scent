@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+    <title>Product — ALLURE</title>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top" aria-label="Main navigation">
+    <div class="container-fluid">
+      <a href="index.html"><img src="./images/logo-transparent-png.png" alt="ALLURE" height="40"></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar2" aria-controls="offcanvasNavbar2" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar2" aria-labelledby="offcanvasNavbar2Label">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasNavbar2Label">ALLURE</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+            <li class="nav-item"><a class="nav-link" href="shop.html">Shop All</a></li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Men</a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="shop.html?gender=men">All Men's</a></li>
+                <li><a class="dropdown-item" href="shop.html?gender=men&category=gift-sets">Gift Sets</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Women</a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="shop.html?gender=women">All Women's</a></li>
+                <li><a class="dropdown-item" href="shop.html?gender=women&category=gift-sets">Gift Sets</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Find Your Fragrance</a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="shop.html?family=amber">Amber</a></li>
+                <li><a class="dropdown-item" href="shop.html?family=woody">Earthy &amp; Woody</a></li>
+                <li><a class="dropdown-item" href="shop.html?family=floral">Floral</a></li>
+                <li><a class="dropdown-item" href="shop.html?family=fresh">Fresh</a></li>
+                <li><a class="dropdown-item" href="shop.html?family=fruity">Fruity</a></li>
+                <li><a class="dropdown-item" href="shop.html?family=spicy">Warm &amp; Spicy</a></li>
+              </ul>
+            </li>
+          </ul>
+
+          <form class="d-flex search-form" role="search" action="shop.html" method="get">
+            <input class="form-control form-control-sm" type="search" name="q" placeholder="Search perfumes…" aria-label="Search">
+            <button class="btn btn-sm btn-outline-dark" type="submit">Search</button>
+          </form>
+
+          <button class="cart-icon" type="button" data-cart-toggle aria-label="Open cart">
+            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 20">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 15a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm0 0h8m-8 0-1-4m9 4a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm-9-4h10l2-7H3m2 7L3 4m0 0-.792-3H1"/>
+            </svg>
+            <span data-cart-count>0</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container product-page">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="index.html">Home</a> / <a href="shop.html">Shop</a> / <span data-crumb>Product</span>
+    </nav>
+    <div id="productDetail"><!-- filled by product.js --></div>
+  </div>
+
+  <div class="container Categories" id="relatedSection" hidden>
+    <div class="featured-text mt-5"><a>You may also like</a></div>
+    <div class="card"><div class="product-list" data-related></div></div>
+  </div>
+
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-3">
+          <h5>Information</h5>
+          <ul class="list-unstyled">
+            <li><a href="#">About Us</a></li>
+            <li><a href="#" class="nav-link p-0 text-body-primary">Privacy Policy</a></li>
+          </ul>
+        </div>
+        <div class="col-sm-3">
+          <h5>Customer Service</h5>
+          <ul class="list-unstyled">
+            <li><a href="#" class="nav-link p-0 text-body-primary">Contact Us</a></li>
+            <li><a href="#" class="nav-link p-0 text-body-primary">Returns</a></li>
+          </ul>
+        </div>
+        <div class="col-sm-3">
+          <h5>Extras</h5>
+          <ul class="list-unstyled">
+            <li><a href="shop.html" class="nav-link p-0 text-body-primary">Brands</a></li>
+          </ul>
+        </div>
+        <div class="col-sm-3">
+          <h5>My Account</h5>
+          <ul class="list-unstyled">
+            <li><a href="#" class="nav-link p-0 text-body-primary">My Account</a></li>
+          </ul>
+        </div>
+      </div>
+      <hr>
+      <p><a href="#" class="nav-link p-0 text-body-primary">Allure Fragrance © 2023</a></p>
+    </div>
+  </footer>
+
+  <div class="cart-overlay" data-cart-overlay></div>
+  <aside class="cartTab" aria-label="Shopping cart">
+    <h1>Shopping Cart</h1>
+    <div class="listCart" data-cart-list></div>
+    <div class="cartFoot">
+      <div class="cart-total-row"><span>Total</span><span data-cart-total>₦0</span></div>
+      <div class="btn">
+        <button class="close" data-cart-close>Close</button>
+        <button class="checkOut" data-checkout>Checkout</button>
+      </div>
+    </div>
+  </aside>
+
+  <script src="./products.js"></script>
+  <script src="./api.js"></script>
+  <script src="./store.js"></script>
+  <script src="./cards.js"></script>
+  <script src="./product.js"></script>
+</body>
+</html>

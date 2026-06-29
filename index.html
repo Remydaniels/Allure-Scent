@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+    <title>ALLURE — Luxury Fragrances</title>
+    <script>
+      // Brand logos load best-first: local file -> remote logo service -> text.
+      function brandLogoError(img) {
+        var remote = img.getAttribute("data-remote");
+        if (remote && !img.dataset.triedRemote) {
+          img.dataset.triedRemote = "1";
+          img.src = remote; // local file missing — try the remote logo service
+          return;
+        }
+        brandFallback(img); // nothing loaded — show the brand name as text
+      }
+      function brandFallback(img) {
+        var s = document.createElement("span");
+        s.className = "brand-name";
+        s.textContent = img.getAttribute("data-name") || img.alt || "";
+        if (img.parentNode) img.parentNode.replaceChild(s, img);
+      }
+    </script>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top" aria-label="Main navigation">
+    <div class="container-fluid">
+      <a href="index.html"><img src="./images/logo-transparent-png.png" alt="ALLURE" height="40"></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar2" aria-controls="offcanvasNavbar2" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar2" aria-labelledby="offcanvasNavbar2Label">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasNavbar2Label">ALLURE</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+            <li class="nav-item"><a class="nav-link" href="shop.html">Shop All</a></li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Men</a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="shop.html?gender=men">All Men's</a></li>
+                <li><a class="dropdown-item" href="shop.html?gender=men&category=gift-sets">Gift Sets</a></li>
+                <li><a class="dropdown-item" href="shop.html?gender=men&family=fresh">Fresh</a></li>
+                <li><a class="dropdown-item" href="shop.html?gender=men&family=woody">Woody</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Women</a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="shop.html?gender=women">All Women's</a></li>
+                <li><a class="dropdown-item" href="shop.html?gender=women&category=gift-sets">Gift Sets</a></li>
+                <li><a class="dropdown-item" href="shop.html?gender=women&family=floral">Floral</a></li>
+                <li><a class="dropdown-item" href="shop.html?gender=women&family=fruity">Fruity</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Find Your Fragrance</a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="shop.html?family=amber">Amber</a></li>
+                <li><a class="dropdown-item" href="shop.html?family=woody">Earthy &amp; Woody</a></li>
+                <li><a class="dropdown-item" href="shop.html?family=floral">Floral</a></li>
+                <li><a class="dropdown-item" href="shop.html?family=fresh">Fresh</a></li>
+                <li><a class="dropdown-item" href="shop.html?family=fruity">Fruity</a></li>
+                <li><a class="dropdown-item" href="shop.html?family=spicy">Warm &amp; Spicy</a></li>
+              </ul>
+            </li>
+          </ul>
+
+          <form class="d-flex search-form" role="search" action="shop.html" method="get">
+            <input class="form-control form-control-sm" type="search" name="q" placeholder="Search perfumes…" aria-label="Search">
+            <button class="btn btn-sm btn-outline-dark" type="submit">Search</button>
+          </form>
+
+          <button class="cart-icon" type="button" data-cart-toggle aria-label="Open cart">
+            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 20">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 15a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm0 0h8m-8 0-1-4m9 4a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm-9-4h10l2-7H3m2 7L3 4m0 0-.792-3H1"/>
+            </svg>
+            <span data-cart-count>0</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main class="w-100 mb-0">
+    <div id="carouselExampleIndicators" class="carousel slide">
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4" aria-label="Slide 5"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="5" aria-label="Slide 6"></button>
+      </div>
+      <div class="carousel-inner within">
+        <div class="carousel-item active">
+          <a href="shop.html"><img src="./Large images/bvlgari-rain-1920x700.jpg" class="d-block w-100" alt="Bvlgari"></a>
+        </div>
+        <div class="carousel-item">
+          <a href="shop.html?gender=women"><img src="./Large images/dolce-gabbana-queen1-1920x700.jpg" class="d-block w-100" alt="Dolce &amp; Gabbana"></a>
+        </div>
+        <div class="carousel-item">
+          <a href="shop.html?gender=men"><img src="./Large images/hugo-boss-hugo-jeans-125ml-1920x700.jpg" class="d-block w-100" alt="Hugo Boss"></a>
+        </div>
+        <div class="carousel-item">
+          <a href="shop.html?gender=women&family=floral"><img src="./Large images/miss-dior-banner-1920x700.jpg" class="d-block w-100" alt="Miss Dior"></a>
+        </div>
+        <div class="carousel-item">
+          <a href="shop.html?gender=men"><img src="./Large images/paco-rabanne-1-one-million-royal-1920x700.jpg" class="d-block w-100" alt="Paco Rabanne"></a>
+        </div>
+        <div class="carousel-item">
+          <a href="shop.html?family=amber"><img src="./Large images/yves-saint-laurent-opium-le-1920x700.jpg" class="d-block w-100" alt="YSL Opium"></a>
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </main>
+
+  <hr>
+  <div class="container Categories">
+    <div class="featured-text mt-5">
+      <a>New Arrivals</a>
+      <a class="see-all" href="shop.html?category=new-arrivals">See all →</a>
+    </div>
+    <div class="card">
+      <div class="product-list" data-grid="new-arrivals"></div>
+    </div>
+  </div>
+
+  <hr>
+  <div class="container Categories">
+    <div class="featured-text mt-5">
+      <a>Gift Sets</a>
+      <a class="see-all" href="shop.html?category=gift-sets">See all →</a>
+    </div>
+    <div class="card">
+      <div class="product-list" data-grid="gift-sets"></div>
+    </div>
+  </div>
+
+  <div class="container px-4 pt-5 pb-2" id="featured-3">
+    <h1 class="pb-2 border-bottom">Why shop with ALLURE</h1>
+    <h2 class="pb-3 pt-3">100% authentic fragrances, delivered with care</h2>
+    <div class="row g-4 row-cols-1 row-cols-lg-3">
+      <div>
+        <div class="feature-icon d-inline-flex align-items-center justify-content-center bg-gradient fs-2 mb-3">
+          <img src="./icons/icons8-buy.gif" alt="buy icon" width="70px">
+        </div>
+        <div class="text-with-icons_content-wrapper">
+          <p class="text-with-icons text-strong">Satisfied or refunded</p>
+          <div class="text-with-icons__content rte"><p>See our refund policy for more</p></div>
+        </div>
+      </div>
+      <div>
+        <div class="feature-icon d-inline-flex align-items-center justify-content-center bg-gradient fs-2 mb-3">
+          <img src="./icons/icons8-customer-support-68.png" alt="support" width="70px">
+        </div>
+        <div class="text-with-icons_content-wrapper">
+          <p class="text-with-icons text--strong">Top-notch support</p>
+          <div class="text-with-icons__content rte"><p>Contact us for any help with your order</p></div>
+        </div>
+      </div>
+      <div>
+        <div class="feature-icon d-inline-flex align-items-center justify-content-center bg-gradient fs-2 mb-3">
+          <img src="./icons/icons8-card-security-90.png" alt="security" width="70px">
+        </div>
+        <div class="text-with-icons__content-wrapper">
+          <p class="text-with-icons text--strong">Secure payments</p>
+          <div class="text-with-icons__content rte"><p>Our payment systems are safe and secured</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid brands-band">
+    <p class="brands-title">Brands we carry</p>
+    <div class="slides">
+      <div class="slide-item">
+        <img class="brand-logo" data-name="Chanel" alt="Chanel" src="./images/brands/chanel.png" data-remote="https://logo.clearbit.com/chanel.com" onerror="brandLogoError(this)">
+        <img class="brand-logo" data-name="Dior" alt="Dior" src="./images/brands/dior.png" data-remote="https://logo.clearbit.com/dior.com" onerror="brandLogoError(this)">
+        <img class="brand-logo" data-name="Gucci" alt="Gucci" src="./images/brands/gucci.png" data-remote="https://logo.clearbit.com/gucci.com" onerror="brandLogoError(this)">
+        <img class="brand-logo" data-name="Yves Saint Laurent" alt="Yves Saint Laurent" src="./images/brands/ysl.png" data-remote="https://logo.clearbit.com/ysl.com" onerror="brandLogoError(this)">
+        <img class="brand-logo" data-name="Versace" alt="Versace" src="./images/brands/versace.png" data-remote="https://logo.clearbit.com/versace.com" onerror="brandLogoError(this)">
+        <img class="brand-logo" data-name="Creed" alt="Creed" src="./images/brands/creed.png" data-remote="https://logo.clearbit.com/creedfragrances.co.uk" onerror="brandLogoError(this)">
+        <img class="brand-logo" data-name="Bvlgari" alt="Bvlgari" src="./images/brands/bvlgari.png" data-remote="https://logo.clearbit.com/bulgari.com" onerror="brandLogoError(this)">
+        <img class="brand-logo" data-name="Hugo Boss" alt="Hugo Boss" src="./images/brands/hugo-boss.png" data-remote="https://logo.clearbit.com/hugoboss.com" onerror="brandLogoError(this)">
+        <img class="brand-logo" data-name="Armani" alt="Armani" src="./images/brands/armani.png" data-remote="https://logo.clearbit.com/armani.com" onerror="brandLogoError(this)">
+        <img class="brand-logo" data-name="Carolina Herrera" alt="Carolina Herrera" src="./images/brands/carolina-herrera.png" data-remote="https://logo.clearbit.com/carolinaherrera.com" onerror="brandLogoError(this)">
+        <img class="brand-logo" data-name="Paco Rabanne" alt="Paco Rabanne" src="./images/brands/paco-rabanne.png" data-remote="https://logo.clearbit.com/pacorabanne.com" onerror="brandLogoError(this)">
+        <img class="brand-logo" data-name="Tom Ford" alt="Tom Ford" src="./images/brands/tom-ford.png" data-remote="https://logo.clearbit.com/tomford.com" onerror="brandLogoError(this)">
+        <img class="brand-logo" data-name="Parfums de Marly" alt="Parfums de Marly" src="./images/brands/parfums-de-marly.png" data-remote="https://logo.clearbit.com/parfums-de-marly.com" onerror="brandLogoError(this)">
+        <img class="brand-logo" data-name="Amouage" alt="Amouage" src="./images/brands/amouage.png" data-remote="https://logo.clearbit.com/amouage.com" onerror="brandLogoError(this)">
+        <img class="brand-logo" data-name="Nishane" alt="Nishane" src="./images/brands/nishane.png" data-remote="https://logo.clearbit.com/nishane.com" onerror="brandLogoError(this)">
+        <img class="brand-logo" data-name="Valentino" alt="Valentino" src="./images/brands/valentino.png" data-remote="https://logo.clearbit.com/valentino.com" onerror="brandLogoError(this)">
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-3">
+          <h5>Information</h5>
+          <ul class="list-unstyled">
+            <li><a href="#">About Us</a></li>
+            <li><a href="#" class="nav-link p-0 text-body-primary">Privacy Policy</a></li>
+            <li><a href="#" class="nav-link p-0 text-body-primary">Terms &amp; Conditions</a></li>
+            <li><a href="#" class="nav-link p-0 text-body-primary">Returns Policy</a></li>
+            <li><a href="#" class="nav-link p-0 text-body-primary">Delivery Information</a></li>
+          </ul>
+        </div>
+        <div class="col-sm-3">
+          <h5>Customer Service</h5>
+          <ul class="list-unstyled">
+            <li><a href="#" class="nav-link p-0 text-body-primary">Contact Us</a></li>
+            <li><a href="#" class="nav-link p-0 text-body-primary">Returns</a></li>
+            <li><a href="#" class="nav-link p-0 text-body-primary">Site Map</a></li>
+          </ul>
+        </div>
+        <div class="col-sm-3">
+          <h5>Extras</h5>
+          <ul class="list-unstyled">
+            <li><a href="shop.html" class="nav-link p-0 text-body-primary">Brands</a></li>
+            <li><a href="admin.html" class="nav-link p-0 text-body-primary">Add Products (Admin)</a></li>
+            <li><a href="#" class="nav-link p-0 text-body-primary">Our News</a></li>
+            <li><a href="#" class="nav-link p-0 text-body-primary">Gift Certificates</a></li>
+            <li><a href="#" class="nav-link p-0 text-body-primary">Affiliate</a></li>
+            <li><a href="#" class="nav-link p-0 text-body-primary">Specials</a></li>
+          </ul>
+        </div>
+        <div class="col-sm-3">
+          <h5>My Account</h5>
+          <ul class="list-unstyled">
+            <li><a href="#" class="nav-link p-0 text-body-primary">My Account</a></li>
+            <li><a href="#" class="nav-link p-0 text-body-primary">Order History</a></li>
+            <li><a href="#" class="nav-link p-0 text-body-primary">Wish List</a></li>
+            <li><a href="#" class="nav-link p-0 text-body-primary">Newsletter</a></li>
+          </ul>
+        </div>
+      </div>
+      <hr>
+      <p><a href="#" class="nav-link p-0 text-body-primary">Allure Fragrance © 2023</a></p>
+    </div>
+  </footer>
+
+  <!-- Slide-out cart (shared markup across pages) -->
+  <div class="cart-overlay" data-cart-overlay></div>
+  <aside class="cartTab" aria-label="Shopping cart">
+    <h1>Shopping Cart</h1>
+    <div class="listCart" data-cart-list></div>
+    <div class="cartFoot">
+      <div class="cart-total-row"><span>Total</span><span data-cart-total>₦0</span></div>
+      <div class="btn">
+        <button class="close" data-cart-close>Close</button>
+        <button class="checkOut" data-checkout>Checkout</button>
+      </div>
+    </div>
+  </aside>
+
+  <script src="./products.js"></script>
+  <script src="./api.js"></script>
+  <script src="./store.js"></script>
+  <script src="./cards.js"></script>
+  <script src="./script.js"></script>
+  <script>
+    // Landing page: render featured grids (re-runs when the backend catalog loads).
+    function renderFeatured() {
+      document.querySelectorAll("[data-grid]").forEach(function (grid) {
+        var cat = grid.dataset.grid;
+        var list = window.PRODUCTS.filter(function (p) { return p.category === cat; });
+        window.Catalog.renderGrid(grid, list);
+      });
+    }
+    document.addEventListener("DOMContentLoaded", renderFeatured);
+    window.addEventListener("catalog:ready", renderFeatured);
+  </script>
+</body>
+</html>
