@@ -32,8 +32,12 @@
   var products = (typeof window !== "undefined" && window.PRODUCTS) || [];
 
   function setProducts(list) {
+    // Copy first: `list` may BE the same array as `products`/window.PRODUCTS
+    // (e.g. the API fallback returns window.PRODUCTS), and clearing in place
+    // would otherwise wipe the source before we copy it.
+    var copy = list.slice();
     products.length = 0;
-    for (var i = 0; i < list.length; i++) products.push(list[i]);
+    for (var i = 0; i < copy.length; i++) products.push(copy[i]);
     window.PRODUCTS = products;
   }
 

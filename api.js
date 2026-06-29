@@ -43,10 +43,19 @@
 
     /** Products from the server when enabled, otherwise the static catalog. */
     getProducts: function () {
-      if (!useBackend) return Promise.resolve(window.PRODUCTS || []);
+      // Return COPIES of the static catalog so callers can't accidentally
+      // mutate/clear window.PRODUCTS in place (see store.setProducts).
+      if (!useBackend) return Promise.resolve((window.PRODUCTS || []).slice());
       return fetch("/api/products", { cache: "no-store" })
-        .then(function (r) { if (!r.ok) throw new Error("bad status"); return r.json(); })
-        .catch(function () { return window.PRODUCTS || []; });
+        .then(function (r) {
+          if (!r.ok) throw new Error("bad status");
+          return r.json();
+        })
+        .then(function (data) {
+          // If the API yields nothing usable, fall back to the static catalog.
+          return Array.isArray(data) && data.length ? data : (window.PRODUCTS || []).slice();
+        })
+        .catch(function () { return (window.PRODUCTS || []).slice(); });
     },
 
     addProduct: function (product) {
