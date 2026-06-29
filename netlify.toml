@@ -1,0 +1,11 @@
+# Netlify configuration — ALLURE is a pure static site (no build step).
+# Publishes the repository root as-is.
+[build]
+  publish = "."
+  command = ""
+
+# Optional: send unknown paths to the homepage instead of a 404.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 404

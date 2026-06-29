@@ -1,0 +1,8 @@
+# Node backend (optional / local only — not needed for static hosting)
+node_modules/
+data/
+uploads/
+
+# OS / editor
+.DS_Store
+Thumbs.db

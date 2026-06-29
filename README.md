@@ -1,32 +1,50 @@
 # ALLURE — Perfume Storefront
 
-A perfume shopping site with a static frontend and an optional Node/Express backend.
+A perfume shopping site that runs as a **pure static frontend** (host it anywhere —
+Netlify, GitHub Pages, etc.). An optional Node/Express backend is included for
+local use, but it is **not required**.
 
-## Two ways to run it
+## Deploy to Netlify (static — recommended)
 
-### 1. Simple (no backend)
-Just **double-click `index.html`**. Everything works: browsing, search/filters,
-product pages, cart, and checkout. Products come from `products.js`. Items added
-on the admin page are saved in your browser; use **Export products.js** to make
-them permanent.
+This site needs **no build step**. Deploy it one of two ways:
 
-### 2. Full (with backend) — recommended
-Runs a real server so products, image uploads, and orders are saved to a database
-(`data/db.json`) and are live for everyone.
+1. **Drag & drop:** zip the whole project folder (or just drag the folder) into
+   the Netlify "Deploys" page. That's it.
+2. **Git:** connect the repo. `netlify.toml` already sets it up
+   (publish directory = project root, no build command).
+
+Once live, everything works: browsing, search/filters, product pages, cart, and
+checkout. Products come from `products.js`.
+
+### Adding products on a static site
+On the live site, open **`/admin.html`**, add your perfumes (saved in your
+browser), then click **Export products.js**. Replace the `products.js` file in
+the project with the downloaded one and redeploy — the new products are now live
+for everyone. (This is the static-hosting workflow: there's no server database,
+so the catalog lives in `products.js`.)
+
+You can also just **double-click `index.html`** locally to preview without any
+server.
+
+## Optional: run the local Node backend
+
+If you want a real database, image uploads, and saved orders **while developing
+locally**, you can run the bundled server. (Netlify can't host this part.)
 
 ```bash
-npm install     # first time only
+npm install        # first time only
+# turn the backend on for the frontend:
+#   in api.js set  BACKEND_ENABLED = true
 npm start
 ```
 
-Then open **http://localhost:3000** in your browser.
+Then open **http://localhost:3000**.
 
 - Admin page: http://localhost:3000/admin.html
 - Admin password: `Aderemi01@`
-  (override it by setting an env var before starting, e.g. on Windows PowerShell:
-  `$env:ADMIN_PASSWORD="your-secret"; npm start`)
+  (override with an env var, e.g. PowerShell: `$env:ADMIN_PASSWORD="your-secret"; npm start`)
 
-## What the backend does
+## Optional backend — what it does
 
 | Endpoint | Method | Auth | Purpose |
 |---|---|---|---|
@@ -46,9 +64,10 @@ page stores it for your session after you click **Use password**).
 - `products.js` — default catalog (used when there's no backend, and to seed the DB)
 - `store.js` — cart engine + cart drawer
 - `cards.js` — product card rendering + add-to-cart
-- `api.js` — talks to the backend, falls back to `products.js` offline
-- `server.js` — Express backend
-- `data/db.json` — created on first run (products + orders); safe to delete to reset
+- `api.js` — data layer; static by default (set `BACKEND_ENABLED = true` to use the local server)
+- `server.js` — optional Express backend (local only; not used on Netlify)
+- `netlify.toml` — Netlify static deploy config
+- `data/db.json` — created when the backend runs (products + orders); safe to delete to reset
 
 ## Brand logos
 

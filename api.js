@@ -1,18 +1,21 @@
 /*
- * ALLURE — frontend API helper.
+ * ALLURE — data layer.
  *
- * Talks to the Express backend when the site is served over http(s). When the
- * site is opened directly from disk (file://) or the server is unreachable, the
- * catalog falls back to the static products.js, so the site always works.
+ * This site is built to run as a PURE STATIC frontend (e.g. on Netlify), with
+ * no server required. Products come from products.js (plus anything added on
+ * the admin page, stored in the browser), and checkout confirms locally.
  *
- * The admin password (for write operations) is kept in sessionStorage so it
- * isn't re-typed on every action; it never leaves this browser except as the
- * x-admin-password header to your own server.
+ * Optional local backend:
+ *   If you run the bundled Node server (npm start) and want the frontend to use
+ *   it, set BACKEND_ENABLED to true below. Leave it false for static hosting.
  */
 (function () {
   "use strict";
 
+  var BACKEND_ENABLED = false; // ← true only when running the local Node server
+
   var isHttp = /^https?:$/.test(window.location.protocol);
+  var useBackend = BACKEND_ENABLED && isHttp;
 
   function adminHeaders(extra) {
     var h = extra || {};
@@ -21,28 +24,26 @@
     return h;
   }
 
+  function handleJson(r) {
+    return r.json().then(function (data) {
+      if (!r.ok) throw new Error(data && data.error ? data.error : "Request failed");
+      return data;
+    });
+  }
+
   var API = {
-    /** True when a backend could be available (served over http). */
-    hasBackend: isHttp,
+    /** True only when a local backend is enabled AND reachable over http. */
+    hasBackend: useBackend,
 
-    setAdminPassword: function (pw) {
-      sessionStorage.setItem("allure_admin_pw", pw || "");
-    },
-    getAdminPassword: function () {
-      return sessionStorage.getItem("allure_admin_pw") || "";
-    },
+    setAdminPassword: function (pw) { sessionStorage.setItem("allure_admin_pw", pw || ""); },
+    getAdminPassword: function () { return sessionStorage.getItem("allure_admin_pw") || ""; },
 
-    /** Products from the server, or the static catalog as a fallback. */
+    /** Products from the server when enabled, otherwise the static catalog. */
     getProducts: function () {
-      if (!isHttp) return Promise.resolve(window.PRODUCTS || []);
+      if (!useBackend) return Promise.resolve(window.PRODUCTS || []);
       return fetch("/api/products", { cache: "no-store" })
-        .then(function (r) {
-          if (!r.ok) throw new Error("bad status");
-          return r.json();
-        })
-        .catch(function () {
-          return window.PRODUCTS || [];
-        });
+        .then(function (r) { if (!r.ok) throw new Error("bad status"); return r.json(); })
+        .catch(function () { return window.PRODUCTS || []; });
     },
 
     addProduct: function (product) {
@@ -63,11 +64,7 @@
     uploadImage: function (file) {
       var fd = new FormData();
       fd.append("image", file);
-      return fetch("/api/upload", {
-        method: "POST",
-        headers: adminHeaders(),
-        body: fd,
-      }).then(handleJson);
+      return fetch("/api/upload", { method: "POST", headers: adminHeaders(), body: fd }).then(handleJson);
     },
 
     createOrder: function (order) {
@@ -82,13 +79,6 @@
       return fetch("/api/orders", { headers: adminHeaders() }).then(handleJson);
     },
   };
-
-  function handleJson(r) {
-    return r.json().then(function (data) {
-      if (!r.ok) throw new Error(data && data.error ? data.error : "Request failed");
-      return data;
-    });
-  }
 
   window.API = API;
 })();
