@@ -47,7 +47,8 @@
 
   if (backend) {
     document.getElementById("adminAuth").hidden = false;
-    document.getElementById("uploadRow").hidden = false;
+    // Note: file uploads aren't supported on serverless hosting (no persistent
+    // disk), so products use an image URL. The upload row stays hidden.
     clearBtn.hidden = true; // not relevant when saving to the server
     modeEl.innerHTML = '<span class="mode-pill mode-online">Backend connected</span> Products save to the server and go live for everyone.';
     intro.innerHTML =

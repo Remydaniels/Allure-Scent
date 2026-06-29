@@ -1,73 +1,76 @@
 # ALLURE — Perfume Storefront
 
-A perfume shopping site that runs as a **pure static frontend** (host it anywhere —
-Netlify, GitHub Pages, etc.). An optional Node/Express backend is included for
-local use, but it is **not required**.
+A perfume shopping site with a **full backend** that runs on **Vercel** using
+**Vercel Postgres** (products + orders saved in a real database). It also runs
+locally with the bundled Express server, and degrades to a static site if no
+backend is reachable.
 
-## Deploy to Netlify (static — recommended)
+## Deploy to Vercel (with backend + Postgres)
 
-This site needs **no build step**. Deploy it one of two ways:
+1. **Push the project to a Git repo** (GitHub/GitLab/Bitbucket) and in Vercel
+   click **Add New → Project** and import it.
+   - Framework preset: **Other** · Build command: **none** · Output dir: **`./`**
+     (already set in `vercel.json`).
+2. **Add a database:** in your Vercel project go to **Storage → Create Database →
+   Postgres**, and connect it to the project. Vercel automatically adds the
+   `POSTGRES_URL` (and related) environment variables — no copying needed.
+3. **Set the admin password:** Project → **Settings → Environment Variables** →
+   add `ADMIN_PASSWORD` = `Aderemi01@` (or any secret you prefer).
+4. **Deploy.** On first load the database auto-creates its tables and seeds the
+   12 starter products from `products.js`.
 
-1. **Drag & drop:** zip the whole project folder (or just drag the folder) into
-   the Netlify "Deploys" page. That's it.
-2. **Git:** connect the repo. `netlify.toml` already sets it up
-   (publish directory = project root, no build command).
+That's it — your store is live with a working admin and saved orders.
 
-Once live, everything works: browsing, search/filters, product pages, cart, and
-checkout. Products come from `products.js`.
+- Storefront: `https://<your-app>.vercel.app/`
+- Admin: `https://<your-app>.vercel.app/admin.html` (enter the admin password,
+  click **Use password**, then add/remove products — changes are live instantly).
 
-### Adding products on a static site
-On the live site, open **`/admin.html`**, add your perfumes (saved in your
-browser), then click **Export products.js**. Replace the `products.js` file in
-the project with the downloaded one and redeploy — the new products are now live
-for everyone. (This is the static-hosting workflow: there's no server database,
-so the catalog lives in `products.js`.)
+> Images are added by **URL** (paste a link to a product photo). Serverless
+> hosting has no persistent disk, so file uploads aren't used in this version.
 
-You can also just **double-click `index.html`** locally to preview without any
-server.
-
-## Optional: run the local Node backend
-
-If you want a real database, image uploads, and saved orders **while developing
-locally**, you can run the bundled server. (Netlify can't host this part.)
+## Run locally
 
 ```bash
 npm install        # first time only
-# turn the backend on for the frontend:
-#   in api.js set  BACKEND_ENABLED = true
-npm start
+npm start          # starts the Express server (uses data/db.json)
 ```
 
-Then open **http://localhost:3000**.
+Then open **http://localhost:3000** (admin password `Aderemi01@`, or set
+`$env:ADMIN_PASSWORD` first). Locally the data is stored in `data/db.json`; on
+Vercel it's stored in Postgres. You can also just **double-click `index.html`**
+to preview as a static site (no server, catalog from `products.js`).
 
-- Admin page: http://localhost:3000/admin.html
-- Admin password: `Aderemi01@`
-  (override with an env var, e.g. PowerShell: `$env:ADMIN_PASSWORD="your-secret"; npm start`)
+> Want a static-only deploy instead (e.g. Netlify, no database)? Set
+> `BACKEND_ENABLED = false` in `api.js`; the catalog then comes from
+> `products.js` and the admin saves to the browser with an **Export** workflow.
 
-## Optional backend — what it does
+## API endpoints
 
 | Endpoint | Method | Auth | Purpose |
 |---|---|---|---|
 | `/api/products` | GET | — | List products |
 | `/api/products` | POST | admin | Add a product |
 | `/api/products/:id` | DELETE | admin | Remove a product |
-| `/api/upload` | POST | admin | Upload a product image |
 | `/api/orders` | POST | — | Place an order |
 | `/api/orders` | GET | admin | List orders |
 
 Admin requests send the password in the `x-admin-password` header (the admin
-page stores it for your session after you click **Use password**).
+page stores it for your session after you click **Use password**). The same
+routes are served by the Vercel serverless functions in `api/` (Postgres) and by
+the local Express server in `server.js` (`data/db.json`).
 
 ## Files
 
 - `index.html` / `shop.html` / `product.html` / `checkout.html` / `admin.html` — pages
-- `products.js` — default catalog (used when there's no backend, and to seed the DB)
+- `products.js` — default catalog (used statically, and to seed the database)
 - `store.js` — cart engine + cart drawer
 - `cards.js` — product card rendering + add-to-cart
-- `api.js` — data layer; static by default (set `BACKEND_ENABLED = true` to use the local server)
-- `server.js` — optional Express backend (local only; not used on Netlify)
-- `netlify.toml` — Netlify static deploy config
-- `data/db.json` — created when the backend runs (products + orders); safe to delete to reset
+- `api.js` — data layer (`BACKEND_ENABLED` toggles backend vs. static)
+- `api/` — Vercel serverless functions (products, orders) backed by Postgres
+- `lib/db.js` / `lib/auth.js` — Postgres data layer + admin auth for the functions
+- `vercel.json` — Vercel deploy config
+- `server.js` — local Express server (same API, uses `data/db.json`)
+- `netlify.toml` — config for an optional static-only deploy
 
 ## Brand logos
 
@@ -78,7 +81,9 @@ fails it shows the brand name as text — so it never looks broken.
 
 ## Notes / next steps
 
-- The admin login is a simple shared password — fine for local use. For a public
-  store, deploy the backend (e.g. Render/Railway) and add proper user accounts.
-- Checkout records orders but does **not** take payment yet. A payment provider
-  like Paystack or Flutterwave (both support Naira) can be added next.
+- The admin login is a single shared password (the `ADMIN_PASSWORD` env var).
+  Fine to start with; for multiple staff you'd add real user accounts later.
+- Checkout saves orders to the database but does **not** take payment yet. A
+  provider like Paystack or Flutterwave (both support Naira) can be added next.
+- File/image uploads aren't supported on serverless hosting (no persistent
+  disk) — products use an image URL. Vercel Blob storage could add uploads later.

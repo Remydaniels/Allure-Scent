@@ -12,7 +12,10 @@
 (function () {
   "use strict";
 
-  var BACKEND_ENABLED = false; // ← true only when running the local Node server
+  // Backend is ON: the site talks to the serverless API at /api (Vercel) or the
+  // local Express server. Over file:// (double-click) it auto-falls back to the
+  // static products.js, so local preview still works without a server.
+  var BACKEND_ENABLED = true;
 
   var isHttp = /^https?:$/.test(window.location.protocol);
   var useBackend = BACKEND_ENABLED && isHttp;
