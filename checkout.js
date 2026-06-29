@@ -43,7 +43,8 @@
           '<div class="summary-item">' +
           '  <img src="' + it.product.image + '" alt="' + it.product.name + '">' +
           '  <div class="summary-item-info">' +
-          "    <span class=\"si-name\">" + it.product.name + "</span>" +
+          "    <span class=\"si-name\">" + it.product.name +
+            (it.size ? ' <span class="si-size">' + it.size + "</span>" : "") + "</span>" +
           '    <span class="si-qty">Qty: ' + it.qty + "</span>" +
           "  </div>" +
           '  <span class="si-price">' + fmt(it.lineTotal) + "</span>" +
@@ -105,7 +106,13 @@
         notes: document.getElementById("notes").value.trim(),
       },
       items: items.map(function (it) {
-        return { id: it.product.id, name: it.product.name, qty: it.qty, price: it.product.price };
+        return {
+          id: it.product.id,
+          name: it.product.name,
+          size: it.size || "",
+          qty: it.qty,
+          price: it.unitPrice,
+        };
       }),
       total: subtotal + shippingFor(subtotal),
     };

@@ -32,6 +32,10 @@ const PRODUCTS = [
     gender: "men",
     family: "amber",
     size: "90ml EDP",
+    sizes: [
+      { label: "50ml", price: 32000 },
+      { label: "90ml", price: 48000 },
+    ],
     notes: { top: "Raspberry, Saffron", heart: "Bulgarian Rose, Oud", base: "Patchouli, Amber" },
     description: "A bold, smoky oriental built around precious oud and warm amber — an unmistakable statement scent.",
   },
@@ -45,6 +49,10 @@ const PRODUCTS = [
     gender: "unisex",
     family: "woody",
     size: "50ml Extrait",
+    sizes: [
+      { label: "50ml", price: 95000 },
+      { label: "100ml", price: 165000 },
+    ],
     notes: { top: "Pineapple, Bergamot", heart: "Oakmoss, Jasmine", base: "Cedar, Patchouli" },
     description: "A fruity-chypre powerhouse: juicy pineapple over a sophisticated mossy, woody base.",
   },
@@ -58,6 +66,10 @@ const PRODUCTS = [
     gender: "men",
     family: "fresh",
     size: "100ml EDP",
+    sizes: [
+      { label: "60ml", price: 150000 },
+      { label: "100ml", price: 210000 },
+    ],
     notes: { top: "Apple, Ginger, Bergamot", heart: "Sage, Geranium", base: "Tonka Bean, Cedar, Amberwood" },
     description: "Fresh and modern with a confident woody-aromatic dry-down. A versatile everyday signature.",
   },
@@ -84,6 +96,10 @@ const PRODUCTS = [
     gender: "men",
     family: "fresh",
     size: "125ml Parfum",
+    sizes: [
+      { label: "75ml", price: 62000 },
+      { label: "125ml", price: 88000 },
+    ],
     notes: { top: "Sea Notes, Bergamot", heart: "Geranium, Rosemary, Sage", base: "Incense, Patchouli" },
     description: "The iconic aquatic, deepened with smoky incense. Crisp marine freshness with a refined edge.",
   },

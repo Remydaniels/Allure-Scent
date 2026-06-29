@@ -6,7 +6,10 @@
       "Bash(curl -s http://localhost:3000/api/products)",
       "Bash(python -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\(len\\(d\\),'products; first:',d[0]['name']\\)\")",
       "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:3000/api/orders -H \"x-admin-password: allure-admin\")",
-      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:3000/api/orders -H \"x-admin-password: Aderemi01@\")"
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:3000/api/orders -H \"x-admin-password: Aderemi01@\")",
+      "Bash(node -e \"const p=require\\('./products.js'\\); const g=p.find\\(x=>x.id==='gucci-oud-intense-90'\\); console.log\\('gucci.sizes =', JSON.stringify\\(g.sizes\\)\\);\")",
+      "Bash(curl -s http://localhost:3000/api/orders -H \"x-admin-password: Aderemi01@\")",
+      "Bash(node -e \"let d='';process.stdin.on\\('data',c=>d+=c\\);process.stdin.on\\('end',\\(\\)=>{const o=JSON.parse\\(d\\); const last=o[o.length-1]; console.log\\('order items:', JSON.stringify\\(last.items\\)\\);}\\)\")"
     ]
   }
 }

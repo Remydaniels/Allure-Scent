@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
-    <title>Shop — ALLURE</title>
+    <title>Wishlist — ALLURE</title>
 </head>
 <body>
   <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top" aria-label="Main navigation">
@@ -32,8 +32,6 @@
               <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="shop.html?gender=men">All Men's</a></li>
                 <li><a class="dropdown-item" href="shop.html?gender=men&category=gift-sets">Gift Sets</a></li>
-                <li><a class="dropdown-item" href="shop.html?gender=men&family=fresh">Fresh</a></li>
-                <li><a class="dropdown-item" href="shop.html?gender=men&family=woody">Woody</a></li>
               </ul>
             </li>
             <li class="nav-item dropdown">
@@ -41,8 +39,6 @@
               <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="shop.html?gender=women">All Women's</a></li>
                 <li><a class="dropdown-item" href="shop.html?gender=women&category=gift-sets">Gift Sets</a></li>
-                <li><a class="dropdown-item" href="shop.html?gender=women&family=floral">Floral</a></li>
-                <li><a class="dropdown-item" href="shop.html?gender=women&family=fruity">Fruity</a></li>
               </ul>
             </li>
             <li class="nav-item dropdown">
@@ -76,75 +72,37 @@
 
   <div class="container shop-page">
     <div class="shop-head">
-      <h1 id="shopTitle">Shop All</h1>
-      <p class="results-count" data-results-count></p>
-    </div>
-
-    <div class="shop-toolbar">
-      <input type="search" id="filterSearch" class="form-control" placeholder="Search by name or brand…">
-      <select id="filterCategory" class="form-select">
-        <option value="">All categories</option>
-        <option value="new-arrivals">New Arrivals</option>
-        <option value="gift-sets">Gift Sets</option>
-      </select>
-      <select id="filterGender" class="form-select">
-        <option value="">All</option>
-        <option value="men">Men</option>
-        <option value="women">Women</option>
-        <option value="unisex">Unisex</option>
-      </select>
-      <select id="filterFamily" class="form-select">
-        <option value="">All families</option>
-        <option value="amber">Amber</option>
-        <option value="woody">Woody</option>
-        <option value="floral">Floral</option>
-        <option value="fresh">Fresh</option>
-        <option value="fruity">Fruity</option>
-        <option value="spicy">Warm &amp; Spicy</option>
-      </select>
-      <select id="filterSort" class="form-select">
-        <option value="featured">Sort: Featured</option>
-        <option value="price-asc">Price: Low to High</option>
-        <option value="price-desc">Price: High to Low</option>
-        <option value="name">Name: A–Z</option>
-      </select>
-      <button type="button" id="filterReset" class="btn btn-outline-dark">Reset</button>
+      <h1>Your Wishlist</h1>
+      <p class="results-count" data-wish-results></p>
     </div>
 
     <div class="card">
-      <div class="product-list" data-grid></div>
+      <div class="product-list" data-wish-grid></div>
+    </div>
+
+    <div id="wishEmpty" class="checkout-empty" hidden>
+      <h2>Your wishlist is empty</h2>
+      <p>Tap the heart on any fragrance to save it here for later.</p>
+      <a class="btn btn-dark" href="shop.html">Browse the shop</a>
     </div>
   </div>
 
   <footer>
     <div class="container">
       <div class="row">
-        <div class="col-sm-3">
-          <h5>Information</h5>
-          <ul class="list-unstyled">
-            <li><a href="#">About Us</a></li>
-            <li><a href="#" class="nav-link p-0 text-body-primary">Privacy Policy</a></li>
-            <li><a href="#" class="nav-link p-0 text-body-primary">Terms &amp; Conditions</a></li>
-          </ul>
+        <div class="col-sm-6">
+          <h5>ALLURE</h5>
+          <p>100% authentic luxury fragrances, delivered with care.</p>
         </div>
         <div class="col-sm-3">
-          <h5>Customer Service</h5>
+          <h5>Shop</h5>
           <ul class="list-unstyled">
-            <li><a href="#" class="nav-link p-0 text-body-primary">Contact Us</a></li>
-            <li><a href="#" class="nav-link p-0 text-body-primary">Returns</a></li>
-          </ul>
-        </div>
-        <div class="col-sm-3">
-          <h5>Extras</h5>
-          <ul class="list-unstyled">
-            <li><a href="shop.html" class="nav-link p-0 text-body-primary">Brands</a></li>
-            <li><a href="#" class="nav-link p-0 text-body-primary">Gift Certificates</a></li>
+            <li><a href="shop.html" class="nav-link p-0 text-body-primary">All products</a></li>
           </ul>
         </div>
         <div class="col-sm-3">
           <h5>My Account</h5>
           <ul class="list-unstyled">
-            <li><a href="#" class="nav-link p-0 text-body-primary">My Account</a></li>
             <li><a href="wishlist.html" class="nav-link p-0 text-body-primary">Wish List</a></li>
           </ul>
         </div>
@@ -171,6 +129,6 @@
   <script src="./api.js"></script>
   <script src="./store.js"></script>
   <script src="./cards.js"></script>
-  <script src="./shop.js"></script>
+  <script src="./wishlist.js"></script>
 </body>
 </html>
