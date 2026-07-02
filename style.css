@@ -942,7 +942,15 @@ body.showCart .cartTab { inset: 0 0 0 auto; }
   #carouselExampleIndicators,
   .within,
   .carousel-item {
-    height: 620px;
+    height: 540px;
+  }
+
+  .home-hero {
+    min-height: 540px;
+  }
+
+  .carousel-item img {
+    object-position: center top;
   }
 
   .home-hero::after {
@@ -954,20 +962,68 @@ body.showCart .cartTab { inset: 0 0 0 auto; }
   .hero-copy {
     left: 18px;
     right: 18px;
-    bottom: 42px;
+    bottom: 30px;
   }
 
   .hero-copy h1 {
-    font-size: clamp(3rem, 18vw, 4.9rem);
+    font-size: clamp(2.8rem, 15vw, 4.1rem);
+    line-height: .92;
   }
 
   .hero-copy p {
     font-size: .98rem;
+    margin: 16px 0 20px;
+    line-height: 1.5;
+  }
+
+  .hero-kicker {
+    margin-bottom: 12px;
+    font-size: .68rem;
+    letter-spacing: .16em;
+  }
+
+  .hero-actions {
+    gap: 9px;
+  }
+
+  .hero-actions .btn {
+    flex: 1 1 150px;
+    padding: 11px 12px;
+    text-align: center;
   }
 
   .carousel-control-prev,
-  .carousel-control-next {
+  .carousel-control-next,
+  .carousel-indicators {
     display: none;
+  }
+
+  .brands-band {
+    padding-top: 0;
+  }
+
+  .brands-band .slides {
+    padding: 18px 0;
+  }
+
+  .slides::before,
+  .slides::after {
+    width: 44px;
+  }
+
+  .slide-item {
+    animation-duration: 28s;
+  }
+
+  .slide-item .brand-logo {
+    height: 28px;
+    max-width: 104px;
+    margin: 0 22px;
+  }
+
+  .slide-item .brand-name {
+    margin: 0 22px;
+    font-size: 1.05rem;
   }
 
   .product-list {
