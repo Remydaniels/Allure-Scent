@@ -935,6 +935,20 @@ body.showCart .cartTab { inset: 0 0 0 auto; }
   .search-form input {
     min-width: 0;
   }
+
+  .home-hero,
+  #carouselExampleIndicators,
+  .within,
+  .carousel-item {
+    height: clamp(360px, 52vw, 500px);
+    min-height: 0;
+  }
+
+  .carousel-item img {
+    object-fit: contain;
+    object-position: center;
+    background: #111;
+  }
 }
 
 @media screen and (max-width: 720px) {
@@ -942,15 +956,16 @@ body.showCart .cartTab { inset: 0 0 0 auto; }
   #carouselExampleIndicators,
   .within,
   .carousel-item {
-    height: 540px;
+    height: clamp(300px, 76vw, 390px);
   }
 
   .home-hero {
-    min-height: 540px;
+    min-height: 0;
   }
 
   .carousel-item img {
-    object-position: center top;
+    object-fit: contain;
+    object-position: center;
   }
 
   .home-hero::after {
