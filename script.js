@@ -3,7 +3,7 @@
  * Cart and product rendering live in store.js / cards.js.
  */
 document.addEventListener("DOMContentLoaded", function () {
-  // Auto-advance the hero carousel every 5s.
+  // Auto-advance the hero carousel every 7s.
   var carouselEl = document.getElementById("carouselExampleIndicators");
   if (carouselEl && window.bootstrap) {
     var carousel = new bootstrap.Carousel(carouselEl, { interval: false });
