@@ -940,14 +940,41 @@ body.showCart .cartTab { inset: 0 0 0 auto; }
   #carouselExampleIndicators,
   .within,
   .carousel-item {
-    height: clamp(360px, 52vw, 500px);
+    aspect-ratio: 1920 / 700;
+    height: auto;
     min-height: 0;
   }
 
   .carousel-item img {
-    object-fit: contain;
+    object-fit: cover;
     object-position: center;
-    background: #111;
+  }
+
+  .hero-copy {
+    left: clamp(18px, 5vw, 42px);
+    bottom: clamp(18px, 4vw, 34px);
+    max-width: min(430px, 58vw);
+  }
+
+  .hero-kicker {
+    margin-bottom: 8px;
+    font-size: clamp(.56rem, 1.1vw, .7rem);
+  }
+
+  .hero-copy h1 {
+    font-size: clamp(2rem, 6vw, 4rem);
+    line-height: .9;
+  }
+
+  .hero-copy p {
+    margin: 10px 0 14px;
+    font-size: clamp(.72rem, 1.6vw, .96rem);
+    line-height: 1.4;
+  }
+
+  .hero-actions .btn {
+    padding: 9px 12px;
+    font-size: clamp(.58rem, 1.1vw, .72rem);
   }
 }
 
@@ -956,7 +983,8 @@ body.showCart .cartTab { inset: 0 0 0 auto; }
   #carouselExampleIndicators,
   .within,
   .carousel-item {
-    height: clamp(300px, 76vw, 390px);
+    aspect-ratio: 1920 / 700;
+    height: auto;
   }
 
   .home-hero {
@@ -964,7 +992,7 @@ body.showCart .cartTab { inset: 0 0 0 auto; }
   }
 
   .carousel-item img {
-    object-fit: contain;
+    object-fit: cover;
     object-position: center;
   }
 
@@ -975,35 +1003,42 @@ body.showCart .cartTab { inset: 0 0 0 auto; }
   }
 
   .hero-copy {
-    left: 18px;
-    right: 18px;
-    bottom: 30px;
+    left: 12px;
+    right: auto;
+    bottom: 12px;
+    max-width: 58vw;
   }
 
   .hero-copy h1 {
-    font-size: clamp(2.8rem, 15vw, 4.1rem);
-    line-height: .92;
+    font-size: clamp(1.35rem, 7vw, 2rem);
+    line-height: .9;
   }
 
   .hero-copy p {
-    font-size: .98rem;
-    margin: 16px 0 20px;
-    line-height: 1.5;
+    font-size: clamp(.56rem, 2.6vw, .72rem);
+    margin: 6px 0 8px;
+    line-height: 1.25;
   }
 
   .hero-kicker {
-    margin-bottom: 12px;
-    font-size: .68rem;
-    letter-spacing: .16em;
+    gap: 6px;
+    margin-bottom: 5px;
+    font-size: .48rem;
+    letter-spacing: .1em;
+  }
+
+  .hero-kicker::before {
+    width: 18px;
   }
 
   .hero-actions {
-    gap: 9px;
+    gap: 6px;
   }
 
   .hero-actions .btn {
-    flex: 1 1 150px;
-    padding: 11px 12px;
+    flex: 0 1 auto;
+    padding: 5px 7px;
+    font-size: .48rem;
     text-align: center;
   }
 
